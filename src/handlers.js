@@ -89,7 +89,8 @@ module.exports.handleUnknown = function (data, socket) {
 module.exports.handleSetMaxLRUSize = function (lru, data, paramType, socket) {
     let param = convertToType(data.toString().split('\r\n')[4], paramType);
 
-    if (param < 0 && param > lru.cache.length) {
+    // check if param not smaller than 1 and not smaller than the current size of the cache
+    if (param >= 1 && param >= lru.size) {
         lru.setMaxSize(param);
         return socket.write("+OK\r\n");
     }
