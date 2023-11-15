@@ -44,20 +44,30 @@ module.exports.handleSet = function (lru, data, paramType, socket) {
  * @returns {boolean} - Returns true if the response was successfully written to the socket.
  */
 module.exports.handleDel = function (lru, data, socket) {
-    const key = data.toString().split('\r\n')[4]
+    const dataArr = data.toString().split('\r\n')
+
+    const key = dataArr[4]
 
     if (key === null) {
         return socket.write("-ERR unknown key '" + key + "'\r\n");
     }
 
-    const value = lru.get(key)
+    let delCount = 0;
 
-    if (value === null) {
-        return socket.write("-ERR unknown key '" + key + "'\r\n");
+    for (let i = 4; i < dataArr.length; i++) {
+        const value = lru.get(key)
+
+        if (value === null) {
+            continue;
+        }
+
+        lru.remove(key);
+        delCount++;
     }
 
-    lru.remove(key);
-    return socket.write("+OK\r\n");
+    console.log(delCount);
+
+    return socket.write(":" + delCount + "\r\n");
 }
 
 /**
@@ -118,7 +128,7 @@ module.exports.handleSetMaxLRUSize = function (lru, data, paramType, socket) {
         lru.setMaxSize(param);
         return socket.write("+OK\r\n");
     }
-    
+
     return socket.write("-ERR invalid max size\r\n");
 
 
