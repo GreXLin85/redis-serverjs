@@ -59,6 +59,9 @@ const server = net.createServer((socket) => {
             case "flushdb":
                 handleFlushDB(lru, socket);
                 break;
+            case "dbsize":
+                socket.write(`:${lru.size}\r\n`);
+                break;
             case "quit":
                 handleQuit(socket);
                 break;

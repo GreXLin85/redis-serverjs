@@ -22,6 +22,7 @@ npm start
 * [GET](http://redis.io/commands/get)
 * [DEL](http://redis.io/commands/del)
 * [FLUSHDB](http://redis.io/commands/flushdb) - This command is not support ASYNC/SYNC option in our implementation.
+* [DBSIZE](http://redis.io/commands/dbsize)
 * SET_MAX_LRU_SIZE - This is a custom command to set the maximum size of the LRU cache. The default value is 100. This command is used to test the LRU cache.
 Usage: SET_MAX_LRU_SIZE size
 
