@@ -65,8 +65,6 @@ module.exports.handleDel = function (lru, data, socket) {
         delCount++;
     }
 
-    console.log(delCount);
-
     return socket.write(":" + delCount + "\r\n");
 }
 
