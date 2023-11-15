@@ -5,7 +5,8 @@ This is a tiny Redis Server with simple commands written in JavaScript. It is ba
 ## Installation
 
 ```bash
-npm install redis-serverjs
+git clone https://github.com/GreXLin85/redis-serverjs.git
+cd redis-serverjs
 ```
 
 ### Usage
