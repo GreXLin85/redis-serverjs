@@ -1,8 +1,8 @@
-## Redis Server JS
+# Redis Server JS
 
-This is a simple Redis Server with simple commands written in JavaScript. It is based on the [Redis Protocol Specification](http://redis.io/topics/protocol).
+This is a tiny Redis Server with simple commands written in JavaScript. It is based on the [Redis Protocol Specification](http://redis.io/topics/protocol).
 
-### Installation
+## Installation
 
 ```bash
 npm install redis-serverjs
@@ -21,4 +21,4 @@ npm start
 * [GET](http://redis.io/commands/get)
 * [DEL](http://redis.io/commands/del)
 * SET_MAX_LRU_SIZE - This is a custom command to set the maximum size of the LRU cache. The default value is 100. This command is used to test the LRU cache.
-Usage: SET_MAX_LRU_SIZE <size>
+Usage: SET_MAX_LRU_SIZE size
