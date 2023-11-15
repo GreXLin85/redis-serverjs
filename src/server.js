@@ -8,6 +8,7 @@ const {
     handleDel,
     handleGet,
     handleQuit,
+    handleFlushDB,
     handleSetMaxLRUSize,
     handleUnknown
 } = require('./handlers');  // Importing various handler functions for different Redis commands
@@ -54,6 +55,9 @@ const server = net.createServer((socket) => {
                 // You can use this command by running the following command in the terminal:
                 // redis-cli -p 6379 set_max_lru_size <size>
                 handleSetMaxLRUSize(lru, data, paramType, socket);
+                break;
+            case "flushdb":
+                handleFlushDB(lru, socket);
                 break;
             case "quit":
                 handleQuit(socket);

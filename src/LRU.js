@@ -14,6 +14,13 @@ class LRU {
         this.maxSize = maxSize;
     }
 
+    flushdb() {
+        this.cache = {};
+        this.size = 0;
+        this.head = null;
+        this.tail = null;
+    }
+
     // Method to get the value associated with a key from the cache
     get(key) {
         if (this.cache[key]) {

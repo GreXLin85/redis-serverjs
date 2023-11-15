@@ -15,6 +15,17 @@ module.exports.handleInfo = function (socket) {
 }
 
 /**
+ *  Handles the FLUSHDB command.
+ * @param {LRU} lru - The LRU cache to clear.
+ * @param {net.Socket} socket - The socket to write the response to.
+ * @returns {boolean} - Returns true if the response was successfully written to the socket.
+ */
+module.exports.handleFlushDB = function (lru, socket) {
+    lru.flushdb();
+    return socket.write("+OK\r\n");
+}
+
+/**
  * Handles the PING command.
  * @param {net.Socket} socket - The socket to write the response to.
  * @returns {boolean} - Returns true if the response was successfully written to the socket.
