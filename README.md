@@ -23,3 +23,8 @@ npm start
 * [DEL](http://redis.io/commands/del)
 * SET_MAX_LRU_SIZE - This is a custom command to set the maximum size of the LRU cache. The default value is 100. This command is used to test the LRU cache.
 Usage: SET_MAX_LRU_SIZE size
+
+### References
+
+* [Redis Protocol Specification](http://redis.io/topics/protocol)
+* [Redis Commands](http://redis.io/commands)
