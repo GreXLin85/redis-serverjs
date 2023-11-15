@@ -56,7 +56,19 @@ module.exports.handleDel = function (lru, data, socket) {
  * @returns {boolean} - Returns true if the response was successfully written to the socket.
  */
 module.exports.handleGet = function (lru, data, socket) {
-    return socket.write("+" + lru.get(data.toString().split('\r\n')[4]) + "\r\n");
+    const key = data.toString().split('\r\n')[4]
+
+    if (key === null) {
+        return socket.write("-ERR unknown key '" + key + "'\r\n");
+    }
+
+    const value = lru.get(key)
+
+    if (value === null) {
+        return socket.write("-ERR unknown value '" + key + "'\r\n");
+    }
+
+    return socket.write("+" + value + "\r\n");
 }
 
 /**
