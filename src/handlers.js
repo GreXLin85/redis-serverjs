@@ -138,7 +138,9 @@ module.exports.handleSetMaxLRUSize = function (lru, data, paramType, socket) {
         return socket.write("+OK\r\n");
     }
 
+    if (param < lru.size) {
+        return socket.write("-ERR max size cannot be smaller than the current size of the cache, please check the size of cache with DBSIZE command.\r\n"); 
+    }
+
     return socket.write("-ERR invalid max size\r\n");
-
-
 }
